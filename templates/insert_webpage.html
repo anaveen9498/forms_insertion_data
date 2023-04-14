@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>This is Webpage Details</h1>
+        <form  method="POST">
+            {% csrf_token %}
+            <label for="topic">Topic_Name</label>
+            <select name="topic" id="topic">
+                {% for to in name %}
+                <option value="{{to}}">{{to.topic_name}}</option>
+                {% endfor %}
+            </select>
+
+            
+
+            <br></br>
+            <label for="pn">Player_Name</label>
+            <input type="text" name="pn" id="pn">
+            <br></br>
+            <label for="url">EnterURL</label>
+            
+            <input type="url" name="url" id="url">
+            <br></br>
+            <label for="em">Email</label>
+            <input type="email" name="em" id="em">
+            <br></br>
+            <input type="submit" value="insert_webpage">
+        </form>
+    </center>
+</body>
+</html>
