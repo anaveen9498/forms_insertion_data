@@ -41,3 +41,41 @@ def insert_accessrecords(request):
         TT.save()
         return HttpResponse('Access Records Data Inserted Successfully!!!...')
     return render(request,'insert_accessrecords.html',d)
+
+
+def retriev_data(request):
+    LOT=Topic.objects.all()
+    d={'topics':LOT}
+    if request.method=='POST':
+        td=request.POST.getlist('topic')
+        print(td)
+        nav=Webpage.objects.none()
+
+        for i in td:
+            nav=nav|Webpage.objects.filter(topic_name=i)
+        dd={'webpages':nav}
+        return render(request,'details_webpage.html',dd)
+    return render(request,'retriev_data.html',d)
+
+
+
+
+def checkbox(request):
+    LO=Topic.objects.all()
+    d={'tpt':LO}
+    return render(request,'checkbox.html',d)
+
+
+def access_retrieve(request):
+    LAO=Webpage.objects.all()
+    d={'player':LAO}
+    if request.method=='POST':
+        plrn=request.POST.getlist('pn')
+        print(plrn)
+        N=AccessRecords.objects.none()
+        for x in N:
+            N=N|AccessRecords.objects.filter(player_name=x)
+        dd={'access':plrn}
+        return render(request,'display.html',dd)
+
+    return render(request,'access_retrieve.html',d)
